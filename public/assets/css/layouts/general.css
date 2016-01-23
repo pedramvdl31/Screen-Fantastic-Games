@@ -1,0 +1,154 @@
+ @font-face {
+      font-family: oswald-light;
+      src: url(/assets/fonts/oswald/Oswald-Light.ttf);
+    }
+@font-face {
+   font-family: open-sans;
+   src: url(/assets/fonts/open-sans/OpenSans-Light.ttf);
+}
+ .font-oswald {
+    font-family: oswald-light;
+ }
+
+ .font-open-sans {
+    font-family:open-sans ;
+ }
+/*.label-tag{
+    position: absolute;
+     right: 0; 
+    left: 20px;
+    top: 10px;
+}*/
+.thumb-img{
+	display: block;
+    max-width: 100%;
+    height: inherit;
+}
+.thumb_img_wrapper{
+	height: 250px;
+}
+.thumb_like_btn{
+	position: absolute;
+    font-size: 36px;
+    
+    right: 30px;
+    top: 0;
+    z-index: 1;
+     /*color: #F25252;red*/
+}
+.gold{
+	color: #FFD700;
+}
+.pink{
+	color: rgb(254, 163, 224);
+}
+.red{
+	color: #F25252;
+}
+.light-gray{
+	color: rgba(173, 173, 173, 0.36) !important;
+}
+.thumb_like_btn_active{
+	position: absolute;
+    font-size: 36px;
+    
+    right: 30px;
+    top: 0;
+    z-index: 2;
+
+    /*color: #FFD700;gold*/
+    
+}
+
+.cart-badge{
+    background-color:#d9534f;
+    color:white;
+    position: absolute;
+    border-radius: 10px !important;
+    right: 0;
+    top: -4px;
+    z-index: 2;
+}
+.like-badge{
+    background-color:#d9534f;
+    color:white;
+    position: absolute;
+    border-radius: 10px !important;
+    right: 0;
+    top: -4px;
+    z-index: 2;
+}
+.main-cat:hover {
+	background-color: rgba(173, 173, 173, 0.36);
+}
+.engagement-cat:hover {
+	background-color: rgb(254, 163, 224);
+}
+.simple-cat:hover {
+	background-color: rgba(173, 173, 173, 0.36);
+}
+
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+
+    /*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+        
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+
+
+
+    /*==========  Non-Mobile First Method  ==========*/
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+
+        .thumb_img_wrapper{
+            height: 150px;
+        }
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (max-width : 480px) {
+
+    }
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (max-width : 320px) {
+        
+    }

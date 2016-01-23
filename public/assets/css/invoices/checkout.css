@@ -1,0 +1,42 @@
+
+.q_container{
+
+}
+
+
+
+.height {
+    min-height: 200px;
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+
+
+/*btns*/
+.center{
+width: 150px;
+  margin: 0 auto;
+  
+}
+.panel-title {
+    margin-top: 0px;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+     font-size: large;
+    color: inherit;
+}

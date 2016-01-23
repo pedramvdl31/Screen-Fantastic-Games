@@ -1,0 +1,198 @@
+.selected_items{
+    font-size: 12px;
+}
+.seperator{
+    margin: 2px 0 2px 0; 
+}
+
+.qa-meta{
+    font-size: 11px;
+    color:#626262;
+}
+.tab-container{
+        border: 2px dashed #ddd;
+    padding: 0;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.tab-content{
+    min-height: 100px;
+}
+.tab-pane{
+    padding: 10px;
+}
+.description-image{
+	margin:auto;
+}
+
+.padding-btm-none{
+	padding-bottom: 0 !important;
+}
+.padding-right-none{
+	padding-right: 0 !important;
+}
+.padding-left-none{
+	padding-left: 0 !important;
+}
+.padding-none{
+	    padding: 0 !important;
+}
+.margin-bottom-none{
+	margin-bottom: 0 !important;
+}
+.description-hr{
+    margin: 0;
+    border-top: 5px solid #5cb85c;
+}
+.thumbnail-borderless {
+	border:none !important;
+}
+.big-image{
+	width: 300px;
+	height: 300px !important;
+}
+.active-item{
+	background-color: #428bca;
+}
+.image-panel{
+	border:none;
+
+}
+.item-info{
+	font-size: 18px;
+	text-align: left !important;
+}
+dt{
+	color:gray;
+	text-align: left !important;
+}
+dd{
+
+}
+
+.ok-cart{
+	color: #5cb85c;
+}
+.s-c-dialog{
+
+}
+.s-c-content{
+
+}
+.s-c-body{
+     padding: 0 !important; 
+}
+.s-c-alert{
+	margin-bottom: 0 !important;
+	    height: 110px;
+    /* vertical-align: super; */
+    /* line-height: 110px; */
+    padding-top: 44px;
+
+}
+
+#well-price-t{
+	font-size: 20px;
+    color: #d9534f;
+}
+#well-title-t{
+	color:#565656;
+}
+.bootstrap-touchspin-up{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.bootstrap-touchspin-down{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+#demo3{
+	border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+#right-data-col{
+    border-left: 2px solid #C5C5C5;
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+
+    /*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+        
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+
+
+
+    /*==========  Non-Mobile First Method  ==========*/
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+		.btn-group-1{
+			border-radius: 0;
+		}
+        #proceed-to-payment{
+            margin: 0;
+        }
+        #add-to-wishlist{
+            margin: 0;
+        }
+        #right-data-col{
+            border-left: none;
+        }
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+        .big-image{
+            width: 300px;
+            height: 250px !important;
+        }
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (max-width : 480px) {
+        .big-image{
+            width: 300px;
+            height: 200px !important;
+        }
+    }
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (max-width : 320px) {
+        .big-image{
+            width: 300px;
+            height: 150px !important;
+        }
+    }

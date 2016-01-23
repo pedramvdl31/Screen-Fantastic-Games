@@ -1,0 +1,12 @@
+.mce-tinymce{
+	border: 1px solid red !important;
+	padding: 1px !important; 
+	-moz-border-bottom-colors: none !important;
+	-moz-border-left-colors: none !important;
+	-moz-border-right-colors: none !important;
+	-moz-border-top-colors: none !important;
+	border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color !important;
+	border-image: none !important;
+	border:5px solid rgb(214, 214, 214) !important;
+	border-radius: 6px 6px 6px 6px !important;
+}

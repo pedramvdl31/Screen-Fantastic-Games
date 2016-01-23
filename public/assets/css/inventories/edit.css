@@ -1,0 +1,24 @@
+.task-comment-single{
+	padding: 10px 10px 10px 10px;
+    border-bottom: 1px solid #D2D2D2;
+}
+.comment-text{
+	color:black;
+}
+.media-body p {
+	color:black !important;
+}
+.media-body li {
+	color:black !important;
+}
+.media-body ol {
+	color:black !important;
+}
+
+.full-screen-modal{
+	    z-index: 10000000;
+	    width: calc(90%);
+}
+#modal-image{
+	width: calc(100%);
+}

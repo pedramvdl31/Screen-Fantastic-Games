@@ -1,0 +1,35 @@
+li a{
+	color: #777 !important;
+}
+
+.container {
+    max-width: 100%;
+    width: 100%;
+}
+
+.max-height {
+	height: 100% !important;
+}
+
+html, body {
+	height: 100% !important;
+	background: rgb(241, 241, 241);
+}
+
+.background-color{
+  background-color: rgb(241, 241, 241);
+}
+
+#wrapper{
+	margin-top: 65px;
+}
+
+.alert{
+	border-radius: 0;
+}
+
+a:hover{
+  color: #404040;
+  text-decoration: none;
+  cursor: pointer;
+}

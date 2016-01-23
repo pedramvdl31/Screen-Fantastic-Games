@@ -1,0 +1,14 @@
+  #sortable { list-style-type: none; margin: 0; padding: 0; }
+  #sortable li { 
+	border: 1px solid white;
+	padding: 0.4em; padding-left: 1.5em; 
+	font-size: 1.4em;
+	float: left;
+	height: 201px;
+  	  }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+
+  .badge-s{
+  	    position: absolute;
+    left: 20px;
+  }
