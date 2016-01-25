@@ -19,20 +19,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Job;
 use App\User;
-use App\Admin;
-use App\Role;
-use App\RoleUser;
-use App\Project;
-use App\Permission;
-use App\PermissionRole;
-use App\Task;
-use App\Tax;
-use App\TaskComment;
-use App\Helpers\UploadHelper;
 
-class TaxesController extends Controller
+
+class ArticlesController extends Controller
 {
- public function __construct() {
+     public function __construct() {
        if (Auth::user()) {
             switch (Auth::user()->roles) {
                 case 1:
@@ -50,8 +41,8 @@ class TaxesController extends Controller
                     break;
             }
         }
-
     }    
+  
     /**
      * Display a listing of the resource.
      *
@@ -59,11 +50,11 @@ class TaxesController extends Controller
      */
     public function getIndex()
     {
-        $taxes = Tax::PrepareTaxesForIndex(Tax::all());
-
-        return view('taxes.index')
+        $tags = Tag::PrepareTagsForIndex(Tag::all());
+        return view('tags.index')
             ->with('layout',$this->layout)
-            ->with('taxes',$taxes);
+            ->with('tags',$tags);
+
     }
     /**
      * Adds a task 
@@ -76,10 +67,8 @@ class TaxesController extends Controller
         $country_code = Job::country_code();
 
 
-        return view('taxes.add')
-            ->with('layout',$this->layout)
-            ->with('country_code',$country_code)
-            ->with('kr_cities',$kr_cities);
+        return view('tags.add')
+            ->with('layout',$this->layout);
     }  
     /**
      * Process Task Request
@@ -89,24 +78,16 @@ class TaxesController extends Controller
     public function postAdd()
     {       
 
-        $validator = Validator::make(Input::all(), Tax::$rule_add);
+        $validator = Validator::make(Input::all(), Tag::$rule_add);
         if ($validator->passes()) {
             $title = Input::get('title');
             $description = Input::get('description');
-            $city = Input::get('city');
-            $country = Input::get('country');
-            $rate = Input::get('rate');
-
-            $taxes_data = new Tax;
-            $taxes_data->title = $title;
-            $taxes_data->description = $description;
-            $taxes_data->city = $city;
-            $taxes_data->country = $country;
-            $taxes_data->rate = $rate;
-            $taxes_data->status = 1;
-            if ($taxes_data->save()) {
+            $tags_data = new Tag;
+            $tags_data->title = $title;
+            $tags_data->description = $description;
+            if ($tags_data->save()) {
                  Flash::success('Successfully added!');
-                 return Redirect::route('taxes_index');
+                 return Redirect::route('tags_index');
             }
         }
         else {
@@ -129,14 +110,12 @@ class TaxesController extends Controller
         if (isset($id)) {
             $kr_cities = Job::StatesOfKoreaForSelect();
             $country_code = Job::country_code();
-            $taxes = Tax::find($id);
-            $status = Tax::PrepareStatusForSelect();
-                return view('taxes.edit')
+            $tags = Tag::find($id);
+            $status = Tag::PrepareStatusForSelect();
+                return view('tags.edit')
                 ->with('layout',$this->layout)
-                ->with('country_code',$country_code)
-                ->with('kr_cities',$kr_cities)
                 ->with('status',$status)
-                ->with('taxes',$taxes);
+                ->with('tags',$tags);
         } else {
             Redirect::back();
         }
@@ -148,26 +127,17 @@ class TaxesController extends Controller
      */
     public function postEdit()
     {
-       $validator = Validator::make(Input::all(), Tax::$rule_add);
+       $validator = Validator::make(Input::all(), Tag::$rule_add);
         if ($validator->passes()) {
             $title = Input::get('title');
             $description = Input::get('description');
-            $city = Input::get('city');
-            $country = Input::get('country');
-            $rate = Input::get('rate');
             $id = Input::get('id');
-            $status = Input::get('status');
-
-            $taxes_data = Tax::find($id);
-            $taxes_data->title = $title;
-            $taxes_data->description = $description;
-            $taxes_data->city = $city;
-            $taxes_data->country = $country;
-            $taxes_data->rate = $rate;
-            $taxes_data->status = $status;
-            if ($taxes_data->save()) {
+            $tags_data = Tag::find($id);
+            $tags_data->title = $title;
+            $tags_data->description = $description;
+            if ($tags_data->save()) {
                  Flash::success('Successfully added!');
-                 return Redirect::route('taxes_index');
+                 return Redirect::route('tags_index');
             }
         }
         else {
@@ -189,4 +159,19 @@ class TaxesController extends Controller
 
     } 
 
+    public function getRemove($id = null)
+    {
+        if (isset($id)) {
+            $page = Tag::find($id);
+            if (isset($page)) {
+                if ($page->delete()) {
+                    Flash::success('Successfully Removed!');
+                    return Redirect::route('tags_index');
+                }
+            }
+        }
+    } 
+
+
+  
 }

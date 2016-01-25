@@ -14,12 +14,8 @@
 Route::group(['middleware' => 'beforeFilter'], function () {
 
 	// WEBSITE PUBLIC PAGES
-	Route::get('/events',  ['as'=>'events', 'uses' => 'HomeController@getEvents']);
-	Route::get('/schedule-and-register/ubu-calendar',  ['as'=>'get-calendar', 'uses' => 'HomeController@getCalendar']);
-	// WEBSITE PUBLIC PAGES END
-	Route::post('/questions-and-answers/ajax-add',  ['uses' => 'QnAController@postAjaxqnaAdd']);
-	Route::post('/reviews/ajax-add',  ['uses' => 'ReviewsController@postAjaxReviewAdd']);
-	Route::post('/reviews/ajax-edit',  ['uses' => 'ReviewsController@postAjaxReviewEdit']);
+	Route::get('/articles',  ['as'=>'articles_page', 'uses' => 'HomeController@getArticles']);
+	Route::get('/videos',  ['as'=>'videos_page', 'uses' => 'HomeController@getVideos']);
 
 	Route::get('/admins',  ['as'=>'admins_index', 'uses' => 'AdminsController@getIndex']);
 	Route::get('/admins-simple',  ['as'=>'simple_admin_index', 'uses' => 'AdminsController@getSimpleIndex']);
@@ -135,137 +131,19 @@ Route::group(['middleware' => 'beforeFilter'], function () {
 			Route::post('website-brand/index',  ['uses' => 'WebsiteBrandController@postIndex', 'middleware' => ['acl:'.$prefix.'/website-brand/index']]);
 			Route::post('website-brand/upload',  ['uses' => 'WebsiteBrandController@postUpload', 'middleware' => ['acl:'.$prefix.'/website-brand/upload']]);
 
-						//EVENTS
-			Route::get('events',  ['as' => 'events_index','uses' => 'EventsController@getIndex', 'middleware' => ['acl:'.$prefix.'/events']]);
-			Route::get('events/add',  ['as' => 'events_add','uses' => 'EventsController@getAdd', 'middleware' => ['acl:'.$prefix.'/events/add']]);
-			Route::post('events/add',  ['uses' => 'EventsController@postAdd', 'middleware' => ['acl:'.$prefix.'/events/add']]);
-			Route::get('events/edit/{id}',  ['as' => 'events_edit','uses' => 'EventsController@getEdit', 'middleware' => ['acl:'.$prefix.'/events/edit'], function ($id) {}]);
-			Route::post('events/edit',  ['uses' => 'EventsController@postEdit', 'middleware' => ['acl:'.$prefix.'/events/edit']]);
-			Route::post('events/remove',  ['uses' => 'EventsController@postRemove', 'middleware' => ['acl:'.$prefix.'/events/remove']]);
-			Route::get('events/view/{id}',  ['as' => 'events_view','uses' => 'EventsController@getView', 'middleware' => ['acl:'.$prefix.'/events/view'], function ($id) {}]);
-			Route::post('events/view',  ['uses' => 'EventsController@postView', 'middleware' => ['acl:'.$prefix.'/events/view']]);
-			Route::get('events/remove/{id}',  ['as' => 'events_remove','uses' => 'EventsController@getRemove', 'middleware' => ['acl:'.$prefix.'/events/remove'], function ($id) {}]);
-
+			Route::get('articles',  ['as' => 'articles_index','uses' => 'ArticlesController@getIndex', 'middleware' => ['acl:'.$prefix.'/articles']]);
+			Route::get('articles/add',  ['as' => 'articles_add','uses' => 'ArticlesController@getAdd', 'middleware' => ['acl:'.$prefix.'/articles/add']]);
+			Route::post('articles/add',  ['uses' => 'ArticlesController@postAdd', 'middleware' => ['acl:'.$prefix.'/articles/add']]);
+			Route::get('articles/edit/{id}',  ['as' => 'articles_edit','uses' => 'ArticlesController@getEdit', 'middleware' => ['acl:'.$prefix.'/articles/edit'], function ($id) {}]);
+			Route::post('articles/edit',  ['uses' => 'ArticlesController@postEdit', 'middleware' => ['acl:'.$prefix.'/articles/edit']]);
+			Route::get('articles/remove/{id}',  ['uses' => 'ArticlesController@getRemove', 'middleware' => ['acl:'.$prefix.'/articles/remove'], function ($id) {}]);
 			
-			Route::get('flags',  ['as'=>'flags_index', 'uses' => 'FlagsController@getIndex', 'middleware' => ['acl:'.$prefix.'/flags']]);
-			Route::get('flags/view/{id}',  ['as'=>'flag_view', 'uses' => 'FlagsController@getView', 'middleware' => ['acl:'.$prefix.'/flags/view/{id}'], function ($id) {}]);
-			Route::post('flags/view',  ['uses' => 'FlagsController@postView', 'middleware' => ['acl:'.$prefix.'/flags/view']]);
-			Route::get('flags/approved',  ['as'=>'flags_app', 'uses' => 'FlagsController@getApproved', 'middleware' => ['acl:'.$prefix.'/flags/approved']]);
-			Route::get('flags/rejected',  ['as'=>'flags_rej', 'uses' => 'FlagsController@getRejected', 'middleware' => ['acl:'.$prefix.'/flags/rejected']]);
-			Route::get('flags/re-flagged',  ['as'=>'flags_re', 'uses' => 'FlagsController@getReflagged', 'middleware' => ['acl:'.$prefix.'/flags/re-flagged']]);
-			Route::get('flags/final-approved',  ['as'=>'flags_f_app', 'uses' => 'FlagsController@getFinalApproved', 'middleware' => ['acl:'.$prefix.'/flags/final-approved']]);
-			Route::get('flags/final-reject',  ['as'=>'flags_f_rej', 'uses' => 'FlagsController@getFinalRejected', 'middleware' => ['acl:'.$prefix.'/flags/final-reject']]);
-			Route::get('flags/banned',  ['as'=>'flags_banned', 'uses' => 'FlagsController@getBanned', 'middleware' => ['acl:'.$prefix.'/flags/banned']]);
-
-			Route::get('acl/view',  ['as' => 'acl_view','uses' => 'AdminsController@getViewAcl', 'middleware' => ['acl:'.$prefix.'/acl/view']]);
-			Route::get('categories/index',  ['as'=>'category_index', 'uses' => 'CategoriesController@getIndex', 'middleware' => ['acl:'.$prefix.'/categories/index']]);
-			Route::get('categories/add',  ['as'=>'category_add', 'uses' => 'CategoriesController@getAdd', 'middleware' => ['acl:'.$prefix.'/categories/add']]);
-			Route::post('categories/add',  ['uses' => 'CategoriesController@postAdd', 'middleware' => ['acl:'.$prefix.'/categories/add']]);
-			
-			Route::get('categories/view/{id}',  ['as' => 'category_view','uses' => 'CategoriesController@getView', 'middleware' => ['acl:'.$prefix.'/categories/view'], function ($id) {}]);
-			
-			Route::get('categories/edit/{id}',  ['as'=>'category_edit','uses' => 'CategoriesController@getEdit', 'middleware' => ['acl:'.$prefix.'/categories/edit'], function ($id) {}]);
-			Route::post('categories/edit',  ['uses' => 'CategoriesController@postEdit', 'middleware' => ['acl:'.$prefix.'/categories/edit']]);
-			
-			Route::get('inventories/index',  ['as'=>'inventory_index', 'uses' => 'InventoriesController@getIndex', 'middleware' => ['acl:'.$prefix.'/inventories/index']]);
-			Route::get('inventories/order',  ['as'=>'inventory_order', 'uses' => 'InventoriesController@getOrder', 'middleware' => ['acl:'.$prefix.'/inventories/order']]);
-			Route::post('inventories/order',  ['uses' => 'InventoriesController@postOrder', 'middleware' => ['acl:'.$prefix.'/inventories/order']]);
-			Route::get('inventories/add',  ['as'=>'inventory_add', 'uses' => 'InventoriesController@getAdd', 'middleware' => ['acl:'.$prefix.'/inventories/add']]);
-			Route::post('inventories/add',  ['uses' => 'InventoriesController@postAdd', 'middleware' => ['acl:'.$prefix.'/inventories/add']]);
-			Route::get('inventories/view/{id}',  ['as' => 'inventory_view','uses' => 'InventoriesController@getView', 'middleware' => ['acl:'.$prefix.'/inventories/view'], function ($id) {}]);
-			Route::get('inventories/edit/{id}',  ['as'=>'inventory_edit','uses' => 'InventoriesController@getEdit', 'middleware' => ['acl:'.$prefix.'/inventories/edit'], function ($id) {}]);
-			Route::post('inventories/upload',  ['uses' => 'InventoriesController@postUpload', 'middleware' => ['acl:'.$prefix.'/inventories/upload']]);
-			Route::post('inventories/return-item',  ['uses' => 'InventoriesController@postReturnItem', 'middleware' => ['acl:'.$prefix.'/inventories/return-item']]);
-			Route::post('inventories/item-selected',  ['uses' => 'InventoriesController@postItemSelected', 'middleware' => ['acl:'.$prefix.'/inventories/item-selected']]);
-			Route::post('inventories/view-all-items',  ['uses' => 'InventoriesController@postViewAllItems', 'middleware' => ['acl:'.$prefix.'/inventories/view-all-items']]);
-			Route::post('inventories/item-removed',  ['uses' => 'InventoriesController@postItemRemoved', 'middleware' => ['acl:'.$prefix.'/inventories/item-removed']]);
-			Route::post('inventories/edit',  ['uses' => 'InventoriesController@postEdit', 'middleware' => ['acl:'.$prefix.'/inventories/edit']]);
-			Route::post('inventories/delete',  ['uses' => 'InventoriesController@postDelete', 'middleware' => ['acl:'.$prefix.'/inventories/delete']]);
-			
-			Route::get('invoices/index',  ['as'=>'invoice_index', 'uses' => 'InvoicesController@getIndex', 'middleware' => ['acl:'.$prefix.'/invoices/index']]);
-			Route::get('invoices/add',  ['as'=>'invoice_add', 'uses' => 'InvoicesController@getAdd', 'middleware' => ['acl:'.$prefix.'/invoices/add']]);
-			Route::post('invoices/add',  ['uses' => 'InvoicesController@postAdd', 'middleware' => ['acl:'.$prefix.'/invoices/add']]);
-			Route::post('invoices/admin-checkout',  ['uses' => 'InvoicesController@postAdminCheckout', 'middleware' => ['acl:'.$prefix.'/invoices/admin-checkout']]);
-			Route::post('invoices/admin-checkout-confirmation',  ['uses' => 'InvoicesController@postAdminCheckoutConfirmation', 'middleware' => ['acl:'.$prefix.'/invoices/admin-checkout-confirmation']]);
-			Route::get('invoices/view/{id}',  ['as' => 'invoice_view','uses' => 'InvoicesController@getView', 'middleware' => ['acl:'.$prefix.'/invoices/view'], function ($id) {}]);
-			Route::get('invoices/edit/{id}',  ['as'=>'invoice_edit','uses' => 'InvoicesController@getEdit', 'middleware' => ['acl:'.$prefix.'/invoices/edit'], function ($id) {}]);
-			Route::get('invoices/view-receipt',  ['as'=>'invoice_view_receipt','uses' => 'InvoicesController@getViewReceipt', 'middleware' => ['acl:'.$prefix.'/invoices/view-receipt']]);
-			Route::post('invoices/upload',  ['uses' => 'InvoicesController@postUpload', 'middleware' => ['acl:'.$prefix.'/invoices/upload']]);
-			Route::post('invoices/edit',  ['uses' => 'InvoicesController@postEdit', 'middleware' => ['acl:'.$prefix.'/invoices/edit']]);
-			Route::post('invoices/delete',  ['uses' => 'InvoicesController@postDelete', 'middleware' => ['acl:'.$prefix.'/invoices/delete']]);
-
-			//LAYOUTS
-			Route::get('layouts',  ['as' => 'layouts_index','uses' => 'LayoutsController@getIndex', 'middleware' => ['acl:'.$prefix.'/layouts']]);
-			Route::get('layouts/add',  ['as' => 'layouts_add','uses' => 'LayoutsController@getAdd', 'middleware' => ['acl:'.$prefix.'/layouts/add']]);
-			Route::post('layouts/add',  ['uses' => 'LayoutsController@postAdd', 'middleware' => ['acl:'.$prefix.'/layouts/add']]);
-			Route::get('layouts/edit/{id}',  ['as' => 'layouts_edit','uses' => 'LayoutsController@getEdit', 'middleware' => ['acl:'.$prefix.'/layouts/edit'], function ($id) {}]);
-			Route::post('layouts/edit',  ['uses' => 'LayoutsController@postEdit', 'middleware' => ['acl:'.$prefix.'/layouts/edit']]);
-			Route::post('layouts/remove',  ['uses' => 'LayoutsController@postRemove', 'middleware' => ['acl:'.$prefix.'/layouts/remove']]);
-			Route::get('layouts/view/{id}',  ['as' => 'layouts_view','uses' => 'LayoutsController@getView', 'middleware' => ['acl:'.$prefix.'/layouts/view'], function ($id) {}]);
-			Route::post('layouts/view',  ['uses' => 'LayoutsController@postView', 'middleware' => ['acl:'.$prefix.'/layouts/view']]);
-			Route::get('layouts/remove/{id}',  ['uses' => 'LayoutsController@getRemove', 'middleware' => ['acl:'.$prefix.'/layouts/remove'], function ($id) {}]);
-
-			//PAGES
-			Route::get('pages',  ['as' => 'pages_index','uses' => 'PagesController@getIndex', 'middleware' => ['acl:'.$prefix.'/pages']]);
-			Route::get('pages/sliders-index',  ['as' => 'sliders_index','uses' => 'PagesController@getSlidersIndex', 'middleware' => ['acl:'.$prefix.'/pages/sliders-index']]);
-			Route::get('pages/sliders-add',  ['as' => 'sliders_add','uses' => 'PagesController@getSlidersAdd', 'middleware' => ['acl:'.$prefix.'/pages/sliders-add']]);
-			Route::post('pages/sliders-add',  ['uses' => 'PagesController@postSlidersAdd', 'middleware' => ['acl:'.$prefix.'/pages/sliders-add']]);
-			Route::get('pages/sliders-edit/{id}',  ['as' => 'sliders_edit','uses' => 'PagesController@getSlidersEdit', 'middleware' => ['acl:'.$prefix.'/pages/sliders-edit'], function ($id) {}]);
-			Route::post('pages/sliders-edit',  ['uses' => 'PagesController@postSlidersEdit', 'middleware' => ['acl:'.$prefix.'/pages/sliders-edit']]);
-			Route::get('pages/add',  ['as' => 'pages_add','uses' => 'PagesController@getAdd', 'middleware' => ['acl:'.$prefix.'/pages/add']]);
-			Route::post('pages/preview',  ['uses' => 'PagesController@postAddPreviewStep', 'middleware' => ['acl:'.$prefix.'/pages/preview']]);
-			Route::post('pages/preview2',  ['uses' => 'PagesController@postAddPreviewStep2', 'middleware' => ['acl:'.$prefix.'/pages/preview2']]);
-			Route::post('pages/edit-preview',  ['uses' => 'PagesController@postEditPreviewStep', 'middleware' => ['acl:'.$prefix.'/pages/edit-preview']]);
-			Route::post('pages/sort',  ['uses' => 'PagesController@postAddSortStep', 'middleware' => ['acl:'.$prefix.'/pages/sort']]);
-			Route::post('pages/data',  ['uses' => 'PagesController@postAddDataStep', 'middleware' => ['acl:'.$prefix.'/pages/data']]);
-			Route::post('pages/add',  ['uses' => 'PagesController@postAdd', 'middleware' => ['acl:'.$prefix.'/pages/add']]);
-			Route::post('pages/add-data',  ['uses' => 'PagesController@postAddData', 'middleware' => ['acl:'.$prefix.'/pages/add-data']]);
-			Route::post('pages/data-edit',  ['uses' => 'PagesController@postEditDataStep', 'middleware' => ['acl:'.$prefix.'/pages/data-edit']]);
-			Route::post('pages/add-section',  ['uses' => 'PagesController@postAddSection', 'middleware' => ['acl:'.$prefix.'/pages/add-section']]);
-			Route::post('pages/add-section-edit',  ['uses' => 'PagesController@postAddSectionEdit', 'middleware' => ['acl:'.$prefix.'/pages/add-section-edit']]);
-			Route::get('pages/edit/{id}',  ['as' => 'pages_edit','uses' => 'PagesController@getEdit', 'middleware' => ['acl:'.$prefix.'/pages/edit'], function ($id) {}]);
-			Route::post('pages/edit',  ['uses' => 'PagesController@postEdit', 'middleware' => ['acl:'.$prefix.'/pages/edit']]);
-			Route::post('pages/remove',  ['uses' => 'PagesController@postRemove', 'middleware' => ['acl:'.$prefix.'/pages/remove']]);
-			Route::get('pages/remove/{id}',  ['as' => 'pages_remove','uses' => 'PagesController@getRemove', 'middleware' => ['acl:'.$prefix.'/pages/remove'], function ($id) {}]);
-			Route::post('pages/sliders/upload',  ['uses' => 'PagesController@postUploadSlider', 'middleware' => ['acl:'.$prefix.'/pages/sliders/upload']]);
-			Route::post('pages/pages-slider/upload',  ['uses' => 'PagesController@postUploadPagesSliderImage', 'middleware' => ['acl:'.$prefix.'/pages/pages-slider/upload']]);
-			Route::post('pages/pages-image/upload',  ['uses' => 'PagesController@postUploadPagesImageSingle', 'middleware' => ['acl:'.$prefix.'/pages/pages-image/upload']]);
-			Route::get('pages/view/{id}',  ['as' => 'pages_view','uses' => 'PagesController@getView', 'middleware' => ['acl:'.$prefix.'/pages/view'], function ($id) {}]);
-			Route::post('pages/view',  ['uses' => 'PagesController@postView', 'middleware' => ['acl:'.$prefix.'/pages/view']]);
-			
-			Route::get('sales',  ['as' => 'sales_index','uses' => 'InvoicesController@getSalesIndex', 'middleware' => ['acl:'.$prefix.'/sales']]);
-			Route::get('sales/add',  ['as' => 'sales_add','uses' => 'InvoicesController@getSalesAdd', 'middleware' => ['acl:'.$prefix.'/sales/add']]);
-			Route::post('sales/add',  ['uses' => 'InvoicesController@postSalesAdd', 'middleware' => ['acl:'.$prefix.'/sales/add']]);
-			Route::get('sales/edit/{id}',  ['as' => 'sales_edit','uses' => 'InvoicesController@getSalesEdit', 'middleware' => ['acl:'.$prefix.'/sales/edit'], function ($id) {}]);
-			Route::post('sales/edit',  ['uses' => 'InvoicesController@postSalesEdit', 'middleware' => ['acl:'.$prefix.'/sales/edit']]);
-
-
-			Route::get('tags',  ['as' => 'tags_index','uses' => 'TagsController@getIndex', 'middleware' => ['acl:'.$prefix.'/tags']]);
-			Route::get('tags/add',  ['as' => 'tags_add','uses' => 'TagsController@getAdd', 'middleware' => ['acl:'.$prefix.'/tags/add']]);
-			Route::post('tags/add',  ['uses' => 'TagsController@postAdd', 'middleware' => ['acl:'.$prefix.'/tags/add']]);
-			Route::get('tags/edit/{id}',  ['as' => 'tags_edit','uses' => 'TagsController@getEdit', 'middleware' => ['acl:'.$prefix.'/tags/edit'], function ($id) {}]);
-			Route::post('tags/edit',  ['uses' => 'TagsController@postEdit', 'middleware' => ['acl:'.$prefix.'/tags/edit']]);
-			Route::get('tags/remove/{id}',  ['uses' => 'TagsController@getRemove', 'middleware' => ['acl:'.$prefix.'/tags/remove'], function ($id) {}]);
-			
-			Route::get('taxes',  ['as' => 'taxes_index','uses' => 'TaxesController@getIndex', 'middleware' => ['acl:'.$prefix.'/taxes']]);
-			Route::get('taxes/add',  ['as' => 'taxes_add','uses' => 'TaxesController@getAdd', 'middleware' => ['acl:'.$prefix.'/taxes/add']]);
-			Route::post('taxes/add',  ['uses' => 'TaxesController@postAdd', 'middleware' => ['acl:'.$prefix.'/taxes/add']]);
-			Route::get('taxes/edit/{id}',  ['as' => 'taxes_edit','uses' => 'TaxesController@getEdit', 'middleware' => ['acl:'.$prefix.'/taxes/edit'], function ($id) {}]);
-			Route::post('taxes/edit',  ['uses' => 'TaxesController@postEdit', 'middleware' => ['acl:'.$prefix.'/taxes/edit']]);
-			Route::post('taxes/remove',  ['uses' => 'TaxesController@postRemove', 'middleware' => ['acl:'.$prefix.'/taxes/remove']]);
-			Route::get('taxes/view/{id}',  ['as' => 'taxes_view','uses' => 'TaxesController@getView', 'middleware' => ['acl:'.$prefix.'/taxes/view'], function ($id) {}]);
-			Route::post('taxes/view',  ['uses' => 'TaxesController@postView', 'middleware' => ['acl:'.$prefix.'/taxes/view']]);
-
-			Route::get('questions-and-answers',  ['as' => 'qna_index','uses' => 'QnAController@getIndex', 'middleware' => ['acl:'.$prefix.'/questions-and-answers']]);
-
-			Route::get('questions-and-answers/view/{id}',  ['as' => 'qna_view','uses' => 'QnAController@getView', 'middleware' => ['acl:'.$prefix.'/questions-and-answers/view'], function ($id) {}]);
-			Route::post('questions-and-answers/view',  ['uses' => 'QnAController@postView', 'middleware' => ['acl:'.$prefix.'/questions-and-answers/view']]);
-
-			Route::get('reviews',  ['as' => 'review_index','uses' => 'ReviewsController@getIndex', 'middleware' => ['acl:'.$prefix.'/reviews']]);
-
-			Route::get('reviews/view/{id}',  ['as' => 'review_view','uses' => 'ReviewsController@getView', 'middleware' => ['acl:'.$prefix.'/reviews/view'], function ($id) {}]);
-			Route::post('reviews/view',  ['uses' => 'ReviewsController@postView', 'middleware' => ['acl:'.$prefix.'/reviews/view']]);
-			Route::post('reviews/delete-review',  ['uses' => 'ReviewsController@postDeleteReview', 'middleware' => ['acl:'.$prefix.'/reviews/delete-review']]);
+			Route::get('videos',  ['as' => 'videos_index','uses' => 'VideosController@getIndex', 'middleware' => ['acl:'.$prefix.'/videos']]);
+			Route::get('videos/add',  ['as' => 'videos_add','uses' => 'VideosController@getAdd', 'middleware' => ['acl:'.$prefix.'/videos/add']]);
+			Route::post('videos/add',  ['uses' => 'VideosController@postAdd', 'middleware' => ['acl:'.$prefix.'/videos/add']]);
+			Route::get('videos/edit/{id}',  ['as' => 'videos_edit','uses' => 'VideosController@getEdit', 'middleware' => ['acl:'.$prefix.'/videos/edit'], function ($id) {}]);
+			Route::post('videos/edit',  ['uses' => 'VideosController@postEdit', 'middleware' => ['acl:'.$prefix.'/videos/edit']]);
+			Route::get('videos/remove/{id}',  ['uses' => 'VideosController@getRemove', 'middleware' => ['acl:'.$prefix.'/videos/remove'], function ($id) {}]);
 
 			Route::get('users/index',  ['as' => 'users_index','uses' => 'AdminsController@getUsersIndex', 'middleware' => ['acl:'.$prefix.'/acl/view']]);
 			Route::get('users/add',  ['as' => 'users_add','uses' => 'AdminsController@getUsersAdd', 'middleware' => ['acl:'.$prefix.'/acl/view']]);

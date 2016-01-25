@@ -7,7 +7,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>UBU</title>
+  <title>-</title>
 
   <link rel="shortcut icon" href="/assets/images/gt_favicon.png">
   

@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Free Bootstrap Theme for Developers</title>
+    <title>SF</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -73,8 +73,8 @@
                     <ul class="nav navbar-nav">
                         <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
                         <li class="nav-item"><a class="scrollto" >About</a></li>
-                        <li class="nav-item"><a class="scrollto" >Videos</a></li>
-                        <li class="nav-item"><a class="scrollto" >Articles</a></li>                        
+                        <li class="nav-item"><a class="scrollto" href="{!!route('videos_page')!!}">Videos</a></li>
+                        <li class="nav-item"><a class="scrollto" href="{!!route('articles_page')!!}">Articles</a></li>                        
                         <li class="nav-item last"><a class="scrollto" href="#contact">Contact</a></li>
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
@@ -89,8 +89,8 @@
             <p class="intro">Thanks for watching, be sure to subscribe to our channel for regular videos on films, games, tv and more</p>
             <div class="btns">
 
-                <a class="btn btn-cta-secondary" href="" target="_blank">Videos</a>
-                <a class="btn btn-cta-primary" href="" target="_blank">Articles</a>
+                <a class="btn btn-cta-secondary" href="{!!route('videos_page')!!}">Videos</a>
+                <a class="btn btn-cta-primary" href="{!!route('articles_page')!!}">Articles</a>
             </div>
             <ul class="meta list-inline">
                 <li><a href="https://www.youtube.com/channel/UCFOa_i0toeaLUATe5jlwKHg" target="_blank">View on Youtube</a></li>

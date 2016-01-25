@@ -8,7 +8,11 @@
 
 @section('content')
 <div class="jumbotron">
-  <h1>Taxes Index</h1>
+  <h1>Videos Index</h1>
+    <ol class="breadcrumb">
+      <li class="active">Overview</li>
+      <li><a href="{!!route('videos_add')!!}">Videos Add  <i class="glyphicon glyphicon-edit"></i></a></li>
+    </ol>
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
@@ -17,27 +21,19 @@
             <thead>
               <tr>
                 <th>Title</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Rate</th>
-                <th>Status</th>
                 <th>Date</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($taxes as $taxkey => $tax)
+              @foreach ($videos as $tagkey => $tag)
                 
                 <tr>
-                  <th scope="row">{{$tax['title']}}</th>
-                  <td>{{$tax['city_txt']}}</td>
-                  <td>{{$tax['country']}}</td>
-                  <td>{{$tax['rate']}}</td>
-                  <td>{!!$tax['status_message']!!}</td>
-                  <td>{{$tax['created_at_html']}}</td>
+                  <th scope="row">{{$tag['title']}}</th>
+                  <td>{{$tag['created_at_html']}}</td>
                   <td>
                     <a href="">View</a> / 
-                    <a href="{!! route('taxes_edit',$tax['id']) !!}">Edit</a>
+                    <a href="{!! route('videos_edit',$tag['id']) !!}">Edit</a>
                   </td>
                 </tr>
                 
@@ -45,9 +41,6 @@
             </tbody>
           </table>
         </div>
-  </div>
-  <div class="panel-footer clearfix">
-      
   </div>
 </div>
 @stop
