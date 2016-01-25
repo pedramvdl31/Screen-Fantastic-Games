@@ -70,27 +70,16 @@ class HomeController extends Controller
         $pages = Page::take(1)->first();
         if (isset($pages)) {
             $prefered_layout_set = null;
-            $all_categories = Category::where('status',1)->get();
             $layout_titles = Layout::PrepareLayout(Layout::select('title','id')->take(3)->get());
             $slider_images = Page::PareparePageSlider($pages);
             $param1_lowered = $pages->param_one;
-            $prefered_layout_set = Layout::CheckUserPreferedLayout();
 
-
-            $all_inventories = Inventory::PrepareInventoriesForIndex(Inventory::orderBy('order')
-                                    ->where('status',1)->get(),$prefered_layout_set);
 
 
             return view('home.homepage')
             ->with('layout',$layout_title)
-            ->with('all_categories',$all_categories)
-            ->with('all_inventories',$all_inventories)
-            ->with('slider_images',$slider_images)
-            ->with('layout_titles',$layout_titles)
             ->with('param1_lowered',$param1_lowered)
-            ->with('prefered_layout',$prefered_layout_set)
-            ->with('is_home',1)
-            ->with('slider_option',$pages->slider_option);
+            ->with('is_home',1);
         }
     }
 
