@@ -3,8 +3,3 @@
 /.vagrant/*
 Homestead.yaml
 Homestead.json
-
-/public/assets/images/inventories
-/public/assets/images/pages
-/public/assets/images/brand_image
-
