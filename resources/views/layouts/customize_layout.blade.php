@@ -85,7 +85,7 @@
     <!-- ******PROMO****** -->
     <section id="promo" class="promo section offset-header">
         <div class="container text-center">
-            <h2 class="title" style="font-size: 45px;">Screen<span class="highlight" style="color:#ED1C24">&nbspFanatics</span>&nbsp<span>Game</span></h2>
+            <h2 class="title" style="font-size: 45px;">Screen<span class="highlight" style="color:#ED1C24">&nbspFanatics</span></h2>
             <p class="intro">Thanks for watching, be sure to subscribe to our channel for regular videos on films, games, tv and more</p>
             <div class="btns">
 
