@@ -34,7 +34,7 @@ class VideosController extends Controller
                     $this->layout = 'layouts.admins';
                     break;
                 case 3:
-                    $this->layout = 'layouts.admins_simple';
+                    $this->layout = 'layouts.admins';
                     break;
                 
                 default:

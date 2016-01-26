@@ -2,6 +2,22 @@
 
 namespace App;
 
+use Input;
+use Validator;
+use Redirect;
+use Hash;
+use Request;
+use Route;
+use Response;
+use Auth;
+use URL;
+use Session;
+use Laracasts\Flash\Flash;
+use View;
+
+
+
+
 use Illuminate\Database\Eloquent\Model;
 
 class video extends Model
