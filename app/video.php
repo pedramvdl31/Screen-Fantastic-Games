@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class video extends Model
 {
+	public static $videos_add = array(
+        'title'=>'required',
+        'description'=>'required',
+        'url'=>'required',
+    );
     static public function PrepareVideosForIndex($data) {
 
     	if (isset($data)) {

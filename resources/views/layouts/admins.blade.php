@@ -87,26 +87,22 @@
                                 </li>
 
 
-
-                                <li class="li-menus"><a><i class="fa fa-cogs"></i> Add Content <span class="fa fa-chevron-down"></span></a>
+                                <li class="li-menus"><a><i class="fa fa-newspaper-o"></i> Articles <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li>VIDEOS</li>
-                                            <li class="navLi"><a href="{!! route('videos_index') !!}">View All</a>
-                                            </li>
-                                            <li class="navLi"><a href="{!! route('videos_add') !!}">Add New</a>
-                                            </li>
-
+                                        <li class="navLi"><a href="{!! route('articles_index') !!}">View All</a>
+                                        </li>
+                                        <li class="navLi"><a href="{!! route('articles_add') !!}">Add New</a>
+                                        </li>
                                     </ul>
+                                </li>
+                                <li class="li-menus"><a><i class="fa fa-file-video-o"></i> Videos <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li>ARTICLES</li>
-                                            <li class="navLi"><a href="{!! route('articles_index') !!}">View All</a>
-                                            </li>
-                                            <li class="navLi"><a href="{!! route('articles_add') !!}">Add New</a>
-                                            </li>
-
+                                        <li class="navLi"><a href="{!! route('videos_index') !!}">View All</a>
+                                        </li>
+                                        <li class="navLi"><a href="{!! route('videos_add') !!}">Add New</a>
+                                        </li>
                                     </ul>
-                                </li>  
-
+                                </li>
   
                             </ul>
                         </div>

@@ -68,11 +68,7 @@ class VideosController extends Controller
      */
     public function getAdd()
     {
-        $kr_cities = Job::StatesOfKoreaForSelect();
-        $country_code = Job::country_code();
-
-
-        return view('tags.add')
+        return view('videos.add')
             ->with('layout',$this->layout);
     }  
     /**
@@ -82,17 +78,16 @@ class VideosController extends Controller
      */
     public function postAdd()
     {       
-
-        $validator = Validator::make(Input::all(), Tag::$rule_add);
+        $validator = Validator::make(Input::all(), Video::$videos_add);
         if ($validator->passes()) {
-            $title = Input::get('title');
-            $description = Input::get('description');
-            $tags_data = new Tag;
-            $tags_data->title = $title;
-            $tags_data->description = $description;
-            if ($tags_data->save()) {
+            $videos_data = new Video;
+            $videos_data->title = Input::get('title');
+            $videos_data->description = Input::get('description');
+            $videos_data->url = Input::get('url');
+            $videos_data->status = 1;
+            if ($videos_data->save()) {
                  Flash::success('Successfully added!');
-                 return Redirect::route('tags_index');
+                 return Redirect::route('videos_index');
             }
         }
         else {
@@ -113,14 +108,10 @@ class VideosController extends Controller
     public function getEdit($id = null)
     {
         if (isset($id)) {
-            $kr_cities = Job::StatesOfKoreaForSelect();
-            $country_code = Job::country_code();
-            $tags = Tag::find($id);
-            $status = Tag::PrepareStatusForSelect();
-                return view('tags.edit')
+            $videos = Video::find($id);
+                return view('videos.edit')
                 ->with('layout',$this->layout)
-                ->with('status',$status)
-                ->with('tags',$tags);
+                ->with('videos',$videos);
         } else {
             Redirect::back();
         }
@@ -132,17 +123,19 @@ class VideosController extends Controller
      */
     public function postEdit()
     {
-       $validator = Validator::make(Input::all(), Tag::$rule_add);
+        $validator = Validator::make(Input::all(), Video::$videos_add);
         if ($validator->passes()) {
-            $title = Input::get('title');
-            $description = Input::get('description');
-            $id = Input::get('id');
-            $tags_data = Tag::find($id);
-            $tags_data->title = $title;
-            $tags_data->description = $description;
-            if ($tags_data->save()) {
+            $id = Input::get('video_id');
+            $videos_data = Video::find($id);
+            if (isset($videos_data)) {
+                $videos_data->title = Input::get('title');
+                $videos_data->description = Input::get('description');
+                $videos_data->url = Input::get('url');
+            }
+
+            if ($videos_data->save()) {
                  Flash::success('Successfully added!');
-                 return Redirect::route('tags_index');
+                 return Redirect::route('videos_index');
             }
         }
         else {
@@ -153,6 +146,7 @@ class VideosController extends Controller
             ->withErrors($validator)
             ->withInput(); 
         } 
+        
     }  
     /**
      * /admins/tasks/view.
@@ -161,17 +155,24 @@ class VideosController extends Controller
      */
     public function getView($id = null)
     {
-
+       if (isset($id)) {
+            $videos = Video::find($id);
+                return view('videos.view')
+                ->with('layout',$this->layout)
+                ->with('videos',$videos);
+        } else {
+            Redirect::back();
+        }
     } 
 
     public function getRemove($id = null)
     {
         if (isset($id)) {
-            $page = Tag::find($id);
-            if (isset($page)) {
-                if ($page->delete()) {
+            $video = Video::find($id);
+            if (isset($video)) {
+                if ($video->delete()) {
                     Flash::success('Successfully Removed!');
-                    return Redirect::route('tags_index');
+                    return Redirect::route('videos_index');
                 }
             }
         }

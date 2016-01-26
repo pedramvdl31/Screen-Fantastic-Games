@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Admin</title>
+  <title>SF</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -29,13 +29,13 @@
   <body>
 
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="background-color: #17baef;border-color: #17baef;border-radius: 0px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{!! route('home_index') !!}">
-        <img alt="Brand" src="/assets/images/brand-image.png" height="30px">
+      <a class="navbar-brand" href="/" style="    padding-top: 3px;">
+          <img src="/assets/images/brand_image/perm/sf.png" width="40px">
       </a>
-      <p class="navbar-text">UBU</p>
+
     </div>
   </div>
 </nav>

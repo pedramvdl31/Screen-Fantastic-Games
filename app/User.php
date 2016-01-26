@@ -66,10 +66,8 @@ AuthenticatableContract, CanResetPasswordContract
      */
     public function can($permission = null)
     {
-
-
-        return !is_null($permission) && $this->checkPermission($permission);
-
+        return !is_null($permission) && 
+        $this->checkPermission($permission);
     }
 
     /**
@@ -83,10 +81,11 @@ AuthenticatableContract, CanResetPasswordContract
         $grant_access = false;
         $permissions = $this->getUserPermission(); // Returns a list of permission slugs for the specified user role
         $permissionArray = is_array($perm) ? $perm : [$perm]; // Returns uri of current page as an array
+        
         foreach ($permissionArray as $uri) {
             if($permissions) {
                 foreach ($permissions as $p) {
-                    if($uri == $p) {
+                    if($uri == $p || $uri.'/{id}' == $p) {
                         $grant_access = true;
                         break;
                     }

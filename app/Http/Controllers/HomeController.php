@@ -28,6 +28,8 @@ use App\Page;
 use App\Layout;
 use App\Invoice;
 use App\Event;
+use App\Video;
+use App\Article;
 use App\WebsiteBrand;
 
 class HomeController extends Controller
@@ -82,89 +84,14 @@ class HomeController extends Controller
             ->with('is_home',1);
         }
     }
-
-    public function getEvents()
+        public function getVideos()
     {
-        $events = Event::PrepareEventsForEventPage();
-        $layout_title = 'layouts.customize_layout';
-        return view('pages.website_pages.events')
-        ->with('layout',$layout_title)
-        ->with('events',$events);
-    }
-    public function getCalendar()
-    {
-        $layout_title = 'layouts.customize_layout';
-        return view('pages.website_pages.calendar')
-        ->with('layout',$layout_title);
+            $layout_title = 'layouts.default';
+            $videos = Video::get();
+            return view('pages.website_pages.videos')
+            ->with('layout',$layout_title)
+            ->with('videos',$videos);
     }
 
 
-    //     public function getPage($param1 = null, $param2 = null)
-    // {
-
-    //     if (!isset($param2)) { //LINK
-            
-    //         $param1_lowered = strtolower($param1);
-    //         $pages = Page::where('status', 1)->where('param_one', $param1_lowered)->first();
-    //         if (isset($pages)) {
-    //         $all_categories = Category::all()->where('status',1);
-    //         $empty_height = '';
-    //         if (empty($all_inventories)) {
-    //             $empty_height = 'height:300px;';
-    //         }
-    //         Session::put('this_slug',$param1_lowered);
-
-    //         $all_inventories = Inventory::PrepareInventoriesForIndex(Inventory::orderBy('order')
-    //                                         ->where('page_id',$pages->id)
-    //                                         ->where('status',1)->get());
-    //         $slider_images = null;
-    //         if ($pages->slider_option == true) {
-    //             if (!empty($pages->slider_images) && isset($pages->slider_images) ) {
-    //                 $len = sizeof(json_decode($pages->slider_images, true));
-    //                 if ($len > 0) {
-    //                     $slider_images =  json_decode($pages->slider_images, true);
-    //                 }
-    //             } 
-    //         }
-
-    //         $layout_titles = Page::select('title')->take(3)->get();
-    //         foreach ($layout_titles as $ltkey => $ltvalue) {
-    //             $layout_titles[$ltkey]['lowered'] = strtolower($ltvalue->title);
-    //         }
-
-    //         return view('home.pages')
-    //             ->with('layout',$this->layout)
-    //             ->with('slider_option',$pages->slider_option)
-    //             ->with('all_categories',$all_categories)
-    //             ->with('all_inventories',$all_inventories)
-    //             ->with('this_slug',$param1_lowered)
-    //             ->with('slider_images',$slider_images)
-    //             ->with('layout_titles',$layout_titles)
-    //             ->with('param1_lowered',$param1_lowered)
-    //             ->with('empty_height',$empty_height);
-
-    //         } else {
-    //             return view('errors.101')
-    //                ->with('layout','layouts.default');
-    //         }
-    //     } elseif (isset($param1) && isset($param2)) { //GROUP
-    //         // $page = Page::where('status', 2)
-    //         // ->where('param_one', $param1)
-    //         // ->where('param_two', $param2)->first();
-    //         // $title = isset($page->title)?$page->title:null;
-    //         // if (isset($page)) {
-    //         //     //PAGE FOUND
-    //         //     $page_content          = json_decode($page->content_data);
-    //         //     return view('pages.page')
-    //         //     ->with('layout','layouts.pages')
-    //         //     ->with('title',$title)
-    //         //     ->with('page_content', $page_content);
-    //         // } else {
-    //         //     //PAGE NOT FOUND 404
-    //         //     return view('errors.missing')
-    //         //     ->with('layout','layouts.pages');
-    //         // }
-    //     }
-
-    // }
 }

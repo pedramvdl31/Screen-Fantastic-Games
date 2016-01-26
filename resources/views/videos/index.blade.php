@@ -20,6 +20,7 @@
       <table class="table table-bordered" style="font-size:18px">
             <thead>
               <tr>
+                <th>Id</th>
                 <th>Title</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -29,11 +30,14 @@
               @foreach ($videos as $tagkey => $tag)
                 
                 <tr>
-                  <th scope="row">{{$tag['title']}}</th>
+                  <th scope="row">{{$tag['id']}}</th>
+                  <td>{{$tag['title']}}</td>
                   <td>{{$tag['created_at_html']}}</td>
                   <td>
-                    <a href="">View</a> / 
-                    <a href="{!! route('videos_edit',$tag['id']) !!}">Edit</a>
+                    <a href="{!! route('videos_view_it',$tag['id']) !!}">View</a> -
+                    <a href="{!! route('videos_edit',$tag['id']) !!}">Edit</a> -
+                    <a href="{!! route('videos_remove',$tag['id']) !!}">Delete</a>
+
                   </td>
                 </tr>
                 
