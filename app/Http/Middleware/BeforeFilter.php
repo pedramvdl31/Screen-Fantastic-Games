@@ -49,6 +49,7 @@ class BeforeFilter
                     Job::ViewShareAdminPrivateData();
                     break;
                 default:
+                    Job::ViewShareAdminPrivateData();
                     break;
             }
         }
