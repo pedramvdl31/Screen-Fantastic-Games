@@ -20,7 +20,7 @@ use View;
 
 use Illuminate\Database\Eloquent\Model;
 
-class video extends Model
+class Video extends Model
 {
 	public static $videos_add = array(
         'title'=>'required',
