@@ -93,5 +93,14 @@ class HomeController extends Controller
             ->with('videos',$videos);
     }
 
+        public function getArticles()
+    {
+            $layout_title = 'layouts.default';
+            $articles = Article::PrepareForPublicPage(Article::get());
+            return view('pages.website_pages.articles')
+            ->with('layout',$layout_title)
+            ->with('articles',$articles);
+    }
+
 
 }

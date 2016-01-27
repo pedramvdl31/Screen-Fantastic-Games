@@ -28,6 +28,13 @@
   </head>
   <body>
 
+<style type="text/css">
+  .jumbotron {
+    padding-right: 60px !important;
+    padding-left: 60px !important;
+    }
+</style>
+
 
 <nav class="navbar navbar-default" style="background-color: #17baef;border-color: #17baef;border-radius: 0px;">
   <div class="container-fluid">
@@ -37,6 +44,37 @@
       </a>
 
     </div>
+
+
+
+
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #17baef;border-color: #17baef;border-radius: 0px;">  
+      <div class="container-fluid"> 
+        <div class="navbar-header"> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+            data-target="#bs-example-navbar-collapse-6" aria-expanded="false"> 
+              <span class="sr-only">Toggle navigation</span> 
+              <span class="icon-bar"></span> 
+              <span class="icon-bar"></span> 
+              <span class="icon-bar"></span> 
+          </button> 
+          <a class="navbar-brand" href="/" style="padding-top: 3px;">
+              <img src="/assets/images/brand_image/perm/sf.png" width="40px">
+          </a>
+        </div> 
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+         <ul class="nav navbar-nav navbar-right"> 
+           <li >
+           <a href="/">Home</a></li> 
+           <li><a href="{!!route('videos_page')!!}">Videos</a></li> 
+           <li><a href="{!!route('articles_page')!!}">Articles</a></li> 
+         </ul> 
+        </div> 
+      </div> 
+    </nav>
+
+
+     
   </div>
 </nav>
 

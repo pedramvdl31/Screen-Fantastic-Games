@@ -77,14 +77,16 @@ Route::group(['middleware' => 'beforeFilter'], function () {
 			Route::get('website-brand/index',  ['as' => 'website_brand_index','uses' => 'WebsiteBrandController@getIndex', 'middleware' => ['acl:'.$prefix.'/website-brand/index']]);
 			Route::post('website-brand/index',  ['uses' => 'WebsiteBrandController@postIndex', 'middleware' => ['acl:'.$prefix.'/website-brand/index']]);
 			Route::post('website-brand/upload',  ['uses' => 'WebsiteBrandController@postUpload', 'middleware' => ['acl:'.$prefix.'/website-brand/upload']]);
-
+			
 			Route::get('articles',  ['as' => 'articles_index','uses' => 'ArticlesController@getIndex', 'middleware' => ['acl:'.$prefix.'/articles']]);
 			Route::get('articles/add',  ['as' => 'articles_add','uses' => 'ArticlesController@getAdd', 'middleware' => ['acl:'.$prefix.'/articles/add']]);
 			Route::post('articles/add',  ['uses' => 'ArticlesController@postAdd', 'middleware' => ['acl:'.$prefix.'/articles/add']]);
 			Route::get('articles/edit/{id}',  ['as' => 'articles_edit','uses' => 'ArticlesController@getEdit', 'middleware' => ['acl:'.$prefix.'/articles/edit'], function ($id) {}]);
+			Route::get('articles/view-it/{id}',  ['as' => 'articles_view_it','uses' => 'ArticlesController@getView', 'middleware' => ['acl:'.$prefix.'/articles/view-it'], function ($id) {}]);
 			Route::post('articles/edit',  ['uses' => 'ArticlesController@postEdit', 'middleware' => ['acl:'.$prefix.'/articles/edit']]);
-			Route::get('articles/remove/{id}',  ['uses' => 'ArticlesController@getRemove', 'middleware' => ['acl:'.$prefix.'/articles/remove'], function ($id) {}]);
+			Route::get('articles/remove/{id}',  ['as' => 'articles_remove', 'uses' => 'ArticlesController@getRemove', 'middleware' => ['acl:'.$prefix.'/articles/remove'], function ($id) {}]);
 			
+
 			Route::get('videos',  ['as' => 'videos_index','uses' => 'VideosController@getIndex', 'middleware' => ['acl:'.$prefix.'/videos']]);
 			Route::get('videos/add',  ['as' => 'videos_add','uses' => 'VideosController@getAdd', 'middleware' => ['acl:'.$prefix.'/videos/add']]);
 			Route::post('videos/add',  ['uses' => 'VideosController@postAdd', 'middleware' => ['acl:'.$prefix.'/videos/add']]);

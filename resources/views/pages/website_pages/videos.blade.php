@@ -8,12 +8,11 @@
 
 @section('content')
 
-<div class="container" style="margin-top:10px;margin-bottom:30px;">
+<div class="" style="margin-top:10px;margin-bottom:30px;">
   <div class="jumbotron my-jumbotron">
     <h1>Videos</h1>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
+
       @if(isset($videos))
         @foreach($videos as $single_item)
         <div class="col-md-4 col-sm-12 col-xs-12">
@@ -35,8 +34,7 @@
         </div>
         @endforeach
       @endif
-    </div>
-  </div>
+
 
 
 </div>

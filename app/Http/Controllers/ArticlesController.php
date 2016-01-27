@@ -19,6 +19,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Job;
 use App\User;
+use App\Article;
 
 
 class ArticlesController extends Controller
@@ -50,10 +51,10 @@ class ArticlesController extends Controller
      */
     public function getIndex()
     {
-        $tags = Tag::PrepareTagsForIndex(Tag::all());
-        return view('tags.index')
+        $articles = Article::PrepareArticlesForIndex(Article::all());
+        return view('articles.index')
             ->with('layout',$this->layout)
-            ->with('tags',$tags);
+            ->with('articles',$articles);
 
     }
     /**
@@ -63,11 +64,7 @@ class ArticlesController extends Controller
      */
     public function getAdd()
     {
-        $kr_cities = Job::StatesOfKoreaForSelect();
-        $country_code = Job::country_code();
-
-
-        return view('tags.add')
+        return view('articles.add')
             ->with('layout',$this->layout);
     }  
     /**
@@ -78,16 +75,16 @@ class ArticlesController extends Controller
     public function postAdd()
     {       
 
-        $validator = Validator::make(Input::all(), Tag::$rule_add);
+        $validator = Validator::make(Input::all(), Article::$articles_add);
         if ($validator->passes()) {
             $title = Input::get('title');
-            $description = Input::get('description');
-            $tags_data = new Tag;
-            $tags_data->title = $title;
-            $tags_data->description = $description;
-            if ($tags_data->save()) {
+            $description = Input::get('content');
+            $articles_data = new Article;
+            $articles_data->title = $title;
+            $articles_data->description = $description;
+            if ($articles_data->save()) {
                  Flash::success('Successfully added!');
-                 return Redirect::route('tags_index');
+                 return Redirect::route('articles_index');
             }
         }
         else {
@@ -108,14 +105,10 @@ class ArticlesController extends Controller
     public function getEdit($id = null)
     {
         if (isset($id)) {
-            $kr_cities = Job::StatesOfKoreaForSelect();
-            $country_code = Job::country_code();
-            $tags = Tag::find($id);
-            $status = Tag::PrepareStatusForSelect();
-                return view('tags.edit')
+            $articles = Article::find($id);
+                return view('articles.edit')
                 ->with('layout',$this->layout)
-                ->with('status',$status)
-                ->with('tags',$tags);
+                ->with('articles',$articles);
         } else {
             Redirect::back();
         }
@@ -127,18 +120,22 @@ class ArticlesController extends Controller
      */
     public function postEdit()
     {
-       $validator = Validator::make(Input::all(), Tag::$rule_add);
+        $validator = Validator::make(Input::all(), Article::$articles_add);
         if ($validator->passes()) {
-            $title = Input::get('title');
-            $description = Input::get('description');
-            $id = Input::get('id');
-            $tags_data = Tag::find($id);
-            $tags_data->title = $title;
-            $tags_data->description = $description;
-            if ($tags_data->save()) {
-                 Flash::success('Successfully added!');
-                 return Redirect::route('tags_index');
+            $id = Input::get('article_id');
+            $articles_data = Article::find($id);
+            if (isset($articles_data)) {
+                $title = Input::get('title');
+                $description = Input::get('content');
+                $articles_data->title = $title;
+                $articles_data->description = $description;
+                if ($articles_data->save()) {
+                     Flash::success('Successfully added!');
+                     return Redirect::route('articles_index');
+                }
             }
+
+
         }
         else {
              // validation has failed, display error messages    
@@ -148,6 +145,7 @@ class ArticlesController extends Controller
             ->withErrors($validator)
             ->withInput(); 
         } 
+        
     }  
     /**
      * /admins/tasks/view.
@@ -162,11 +160,11 @@ class ArticlesController extends Controller
     public function getRemove($id = null)
     {
         if (isset($id)) {
-            $page = Tag::find($id);
-            if (isset($page)) {
-                if ($page->delete()) {
+            $article = Article::find($id);
+            if (isset($article)) {
+                if ($article->delete()) {
                     Flash::success('Successfully Removed!');
-                    return Redirect::route('tags_index');
+                    return Redirect::route('articles_index');
                 }
             }
         }
